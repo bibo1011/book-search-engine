@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_ME } from '../utils/queries'
 
-// import { getMe, deleteBook } from '../utils/API';
+import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 import { REMOVE_BOOK } from '../utils/mutations';
@@ -12,14 +12,39 @@ const SavedBooks = () => {
   const [userData, setUserData] = useState({});
 
   const { loading, data } = useQuery(GET_ME, {
-    variables: {userData}
+    variables: {userData: userData}
   });
-  // const book = data?.book || [];
+  const user = data?.me || [];
 
-  const [removeBook] = useMutation(REMOVE_BOOK);
+  // const [removeBook] = useMutation(REMOVE_BOOK);
 
-  // // use this to determine if `useEffect()` hook needs to run again
-  // const userDataLength = Object.keys(userData).length;
+  const userDataLength = Object.keys(userData).length;
+
+  
+    // const getUserData = async () => {
+    //   try {
+    //     const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    //     if (!token) {
+    //       return false;
+    //     }
+
+    //     const response = await getMe(token);
+
+    //     if (!response.ok) {
+    //       throw new Error('something went wrong!');
+    //     }
+
+    //     const user = await response.json();
+    //     setUserData(user);
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // };
+
+ 
+
+  // use this to determine if `useEffect()` hook needs to run again
 
   // useEffect(() => {
   //   const getUserData = async () => {
@@ -55,7 +80,7 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await removeBook(bookId, token);
+      const response = await deleteBook(bookId, token);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -86,12 +111,13 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  // if (!userDataLength) {
-  //   return <h2>LOADING...</h2>;
-  // }
-  if (loading) {
-    return <div>Loading...</div>;
+  if (!userDataLength) {
+    return <h2>LOADING...</h2>;
   }
+
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
