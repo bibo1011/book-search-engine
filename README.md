@@ -25,7 +25,9 @@
   ## *Installation*
    
   Go to client folder cli, `npm install` to install packages.
+
   Go to server folder cli, `npm install` to install packages.
+  
   Go to main folder cli, `npm install` to install packages.
 
   ## *Usage*
