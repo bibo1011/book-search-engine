@@ -24,7 +24,9 @@
 
   ## *Installation*
    
-  
+  Go to client folder cli, `npm install` to install packages.
+  Go to server folder cli, `npm install` to install packages.
+  Go to main folder cli, `npm install` to install packages.
 
   ## *Usage*
    
@@ -33,6 +35,10 @@
   ![alt text](https://github.com/bibo1011/book-search-engine/raw/main/client/public/images/screenshots/ch21ss1.png "book search engine ss1")
 
 ![alt text](https://github.com/bibo1011/book-search-engine/raw/main/client/public/images/screenshots/ch21ss2.png "book search engine ss2")
+
+Link: 
+
+https://bibo1011-book-search-engine.herokuapp.com/
 
   ## *Credits*
    
@@ -54,7 +60,7 @@
 
   ## *Test*
    
-  
+  Use graphql playground to test graphql queries and mutations
 
   # Contact Info
 
